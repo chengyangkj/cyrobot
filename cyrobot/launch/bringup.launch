@@ -1,0 +1,28 @@
+<launch>
+    <!--启动底盘节点-->
+    <node pkg="rosserial_python" name="rosserial_base" type="serial_node.py" output="screen" respawn = "true">
+        <param name="port" value="/dev/arduino" />
+        <param name="baud" value="57600" />
+    </node>
+    <!--激光雷达节点-->
+    <!--<include  file="$(find cyrobot)/launch/include/laser.launch"/>-->
+    <!-- IMU Relay and Filter -->
+    <!--<include file="$(find cyrobot)/launch/include/imu/imu.launch" />-->
+   
+    <!--发布row_odom -->
+    <node pkg="cyrobot" name="cyrobot_base_node" type="lino_base_node"></node>
+
+    <!--机器人模型-->
+     <!--<include file="$(find cyrobot)/launch/description.launch"/>-->
+    <!-- 发布机器人几何中心到底盘的变换-->
+    <!--这里只指定高度的变换 即认定几何中心就是底盘的中心-->
+   <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0.08 0 0 0  /base_footprint /base_link"/>
+
+    <!-- 发布里程计信息 并于imu数据进行融合-->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+        <remap from="odometry/filtered" to="odom" />
+        <rosparam command="load" file="$(find cyrobot)/param/ekf/robot_localization.yaml" />
+    </node>
+    <include file="$(find astra_launch)/launch/astra.launch"/>
+    
+</launch>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.0-0-g9aa0fdb  Build Version: 1.5.7004.21443
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="cyrobot_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-1.7881256192398E-07 1.16616888257148E-07 0.0533405251582288"
+        rpy="0 0 0" />
+      <mass
+        value="10.6032389999435" />
+      <inertia
+        ixx="0.0761698567102905"
+        ixy="-1.31706672436547E-05"
+        ixz="-1.15792975668332E-07"
+        iyy="0.125933342671775"
+        iyz="7.55171580434013E-08"
+        izz="0.180787275044754" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="left_head_Link">
+    <inertial>
+      <origin
+        xyz="4.3176E-06 -0.0085235 3.9638E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1977E-05"
+        ixy="-9.2858E-08"
+        ixz="-4.8557E-08"
+        iyy="7.2258E-05"
+        iyz="9.9816E-09"
+        izz="4.1998E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/left_head_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/left_head_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_head_joint"
+    type="continuous">
+    <origin
+      xyz="0.15151 0.16641 -0.01125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_head_Link" />
+    <axis
+      xyz="0 1 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="right_head_Link">
+    <inertial>
+      <origin
+        xyz="3.4385E-05 0.0085235 -2.0189E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1944E-05"
+        ixy="4.7401E-08"
+        ixz="-2.4255E-08"
+        iyy="7.2258E-05"
+        iyz="8.0471E-08"
+        izz="4.2031E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/right_head_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/right_head_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_head_joint"
+    type="continuous">
+    <origin
+      xyz="0.15151 -0.16639 -0.01125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_head_Link" />
+    <axis
+      xyz="0 1 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="left_back_Link">
+    <inertial>
+      <origin
+        xyz="2.1799E-09 -0.0084295 -7.8207E-10"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1987E-05"
+        ixy="6.5123E-12"
+        ixz="7.2057E-12"
+        iyy="7.2258E-05"
+        iyz="-4.9559E-12"
+        izz="4.1987E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/left_back_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/left_back_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_back_joint"
+    type="continuous">
+    <origin
+      xyz="-0.15154 0.16641 -0.01125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_back_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="right_back_Link">
+    <inertial>
+      <origin
+        xyz="1.1604E-09 0.0084295 1.6848E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1987E-05"
+        ixy="-6.2371E-12"
+        ixz="-7.7808E-12"
+        iyy="7.2258E-05"
+        iyz="-5.4381E-12"
+        izz="4.1987E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/right_back_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/right_back_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_joint"
+    type="continuous">
+    <origin
+      xyz="-0.15154 -0.16639 -0.01125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_back_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="laser_Link">
+    <inertial>
+      <origin
+        xyz="0.0073485 -2.7756E-17 -0.0159"
+        rpy="0 0 0" />
+      <mass
+        value="0.1509" />
+      <inertia
+        ixx="5.6077E-05"
+        ixy="-1.8375E-20"
+        ixz="8.9824E-06"
+        iyy="9.0691E-05"
+        iyz="3.9186E-21"
+        izz="9.0202E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/laser_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cyrobot_description/meshes/laser_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="-0.11502 0.075011 0.147"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_Link" />
+    <axis
+      xyz="0 0 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+</robot>

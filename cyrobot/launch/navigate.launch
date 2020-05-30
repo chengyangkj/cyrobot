@@ -1,0 +1,12 @@
+<launch>
+    <!-- Map server -->
+    <arg name="map_file" default="$(find cyrobot)/maps/keting.yaml"/>
+    <node pkg="map_server" name="map_server"  type="map_server" args="$(arg map_file)" />
+
+    <!-- AMCL used for localization -->
+    <include file="$(find cyrobot)/launch/include/amcl.launch" />
+    
+    <!-- Calls navigation stack packages for compatible cyrobot base -->
+    <!-- Takes reference from env variable LINOBASE. ie. export LINOBASE=2wd -->
+    <include file="$(find cyrobot)/launch/include/move_base/move_base_mecanum.launch" />
+</launch>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.0-0-g9aa0fdb  Build Version: 1.5.7004.21443
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="base.SLDASM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.051223 -0.17904 0.0016447"
+        rpy="0 0 0" />
+      <mass
+        value="0.58631" />
+      <inertia
+        ixx="0.0018015"
+        ixy="-0.00017829"
+        ixz="4.6464E-07"
+        iyy="0.00078851"
+        iyz="1.4397E-06"
+        izz="0.0019131" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right2_joint"
+    type="fixed">
+    <origin
+      xyz="-0.026157 -0.18852 0.036674"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right2_Link" />
+    <axis
+      xyz="0 0 0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="left1_Link">
+    <inertial>
+      <origin
+        xyz="0.053 -1.7347E-17 0.030829"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1987E-05"
+        ixy="-3.6846E-20"
+        ixz="-4.0516E-15"
+        iyy="4.1987E-05"
+        iyz="8.3693E-12"
+        izz="7.2258E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/left1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 255 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/left1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left1_joint"
+    type="revolute">
+    <origin
+      xyz="-0.026157 -0.17148 -0.033326"
+      rpy="3.1416 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="left1_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="left2_Link">
+    <inertial>
+      <origin
+        xyz="0.053035 -1.9899E-05 0.030876"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1945E-05"
+        ixy="-2.4983E-08"
+        ixz="-4.6722E-08"
+        iyy="4.2031E-05"
+        iyz="-8.0868E-08"
+        izz="7.2258E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/left2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 255 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/left2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left2_joint"
+    type="fixed">
+    <origin
+      xyz="-0.026157 -0.18852 -0.033326"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="left2_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="right1_Link">
+    <inertial>
+      <origin
+        xyz="0.052965 1.9899E-05 -0.030924"
+        rpy="0 0 0" />
+      <mass
+        value="0.073422" />
+      <inertia
+        ixx="4.1945E-05"
+        ixy="-2.4983E-08"
+        ixz="4.6722E-08"
+        iyy="4.2031E-05"
+        iyz="8.0868E-08"
+        izz="7.2258E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/right1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 255 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/right1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right1_joint"
+    type="fixed">
+    <origin
+      xyz="-0.026157 -0.17148 0.036674"
+      rpy="3.1416 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right1_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="right2_Link">
+    <inertial>
+      <origin
+        xyz="0.052965 -1.9899E-05 -0.030924"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="4.1945E-05"
+        ixy="-2.4983E-08"
+        ixz="4.6722E-08"
+        iyy="4.2031E-05"
+        iyz="8.0868E-08"
+        izz="7.2258E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/right2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 255 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://base.SLDASM/meshes/right2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right2_joint"
+    type="fixed">
+    <origin
+      xyz="-0.026157 -0.18852 0.036674"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right2_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+</robot>
