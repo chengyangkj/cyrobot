@@ -24,7 +24,7 @@
 
 //电源电压发布频率
 //IMU发布的频率
-#define POWER_PUBLISH_RATE 10 //hz
+#define SENSOR_PUBLISH_RATE 10 //hz
 //IMU发布的频率
 #define IMU_PUBLISH_RATE 20 //hz
 //命令发布的频率
@@ -44,20 +44,25 @@ Kinematics kinematics( MAX_RPM, WHEEL_DIAMETER, FR_WHEELS_DISTANCE, LR_WHEELS_DI
 float g_req_linear_vel_x = 0;
 float g_req_linear_vel_y = 0;
 float g_req_angular_vel_z = 0;
+int FanState=0;
 unsigned long g_prev_command_time = 0;
 //速度控制命令的回调函数
 void commandCallback(const geometry_msgs::Twist& cmd_msg);
 //PID的回调函数
 void PIDCallback(const cyrobot_msgs::PID& pid);
+//Sensor的回调函数
+void sensorCallback(const std_msgs::String& msg);
 //ros的控制句柄
 ros::NodeHandle nh;
 //订阅速度控制话题
 ros::Subscriber<geometry_msgs::Twist> cmd_sub("cmd_vel", commandCallback);
 //订阅PID话题
 ros::Subscriber<cyrobot_msgs::PID> pid_sub("pid", PIDCallback);
+//订阅传感器控制话题
+ros::Subscriber<std_msgs::String> sensor_sub("sensor_control", sensorCallback);
 //发布电源
-std_msgs::Float32 power_msg;
-ros::Publisher power_pub("power",&power_msg);
+std_msgs::String sensor_msg;
+ros::Publisher sensor_pub("sensor",&sensor_msg);
 //创建IMu发布结点
 cyrobot_msgs::Imu raw_imu_msg;
 ros::Publisher raw_imu_pub("raw_imu", &raw_imu_msg);
@@ -67,6 +72,10 @@ ros::Publisher raw_vel_pub("raw_vel", &raw_vel_msg);
 void setup() {
         //初始化蜂鸣器
     pinMode(SOUND_PIN,OUTPUT);
+    //初始化温度传感器输入引脚
+     pinMode(TEMP_PIN,INPUT);
+     //初始化风扇PWM
+     pinMode(FAN_PIN,OUTPUT);
     //发出通电声音
     Power_On_Sound();
     //电压检测模块引脚
@@ -78,10 +87,11 @@ void setup() {
     //订阅话题
     nh.subscribe(pid_sub);
     nh.subscribe(cmd_sub);
+     nh.subscribe(sensor_sub);
     //注册发布的话题
     nh.advertise(raw_vel_pub);
     nh.advertise(raw_imu_pub);
-       nh.advertise(power_pub);
+       nh.advertise(sensor_pub);
     //循环等待连接ros上位机
       while (!nh.connected())
     {
@@ -103,11 +113,9 @@ void setup() {
 }
 void loop() {
 
-
-
  static unsigned long prev_control_time = 0;
  static unsigned long prev_imu_time = 0;
-  static unsigned long prev_power_time = 0;
+  static unsigned long prev_sensor_time = 0;
  static unsigned long prev_debug_time = 0;
  static bool imu_is_initialized;
 
@@ -122,11 +130,11 @@ void loop() {
   {
       stopBase();
   }
-  //达到发布电源电量的频率发布
-   if ((millis() - prev_power_time) >= (1000 / POWER_PUBLISH_RATE))
+  //达到发布传感器数据的频率发布
+   if ((millis() - prev_sensor_time) >= (1000 / SENSOR_PUBLISH_RATE))
   {
-      publish_power();
-      prev_power_time = millis();
+      publish_sensor();
+      prev_sensor_time = millis();
   }
   #ifdef USE_MPU6050_IMU
   //当达到imu的发布频率发布imu信息
@@ -171,11 +179,20 @@ void loop() {
             nh.spinOnce();
         }
 }
-//发布电池电压
-void publish_power()
+//发布传感器
+void publish_sensor()
 {
-    power_msg.data=analogRead(POWER_PIN)/40.92;
-      power_pub.publish(&power_msg);
+    //读取温度值
+    double val;
+    double  temperature;
+    val = analogRead(TEMP_PIN);  //读取模拟量
+    temperature = (val-32)/1.8; //转化为温度
+    temperature=25+37-temperature
+    //读取电压值
+    String battery_val=String(analogRead(POWER_PIN)/40.92);
+    String sensor_data="Temp:"+String(temperature)+":Battery:"+battery_val+":FanState:"+String(FanState);
+    sensor_msg.data=sensor_data.c_str();
+    sensor_pub.publish(&sensor_msg);
 }
 void PIDCallback(const cyrobot_msgs::PID& pid)
 {
@@ -185,6 +202,22 @@ void PIDCallback(const cyrobot_msgs::PID& pid)
     motor2_pid.updateConstants(pid.p, pid.i, pid.d);
     motor3_pid.updateConstants(pid.p, pid.i, pid.d);
     motor4_pid.updateConstants(pid.p, pid.i, pid.d);
+}
+void sensorCallback(const std_msgs::String& msg)
+{
+  switch (msg.data[0])
+  {
+      case 'F':
+          digitalWrite(FAN_PIN,msg.data[1]-'0');
+          FanState=msg.data[1]-'0';
+          break;
+    case 'T':
+         tone( SOUND_PIN, 500-10*15, 1000);
+         break;
+      default:
+         break;
+  }
+  
 }
 
 void commandCallback(const geometry_msgs::Twist& cmd_msg)

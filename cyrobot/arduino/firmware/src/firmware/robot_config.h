@@ -20,3 +20,7 @@
 //#define USE_MPU6050_IMU
 //定义蜂鸣器的引脚
 #define SOUND_PIN 49
+//定义温度传感器数据引脚
+#define TEMP_PIN A7
+//定义散热器引脚
+#define FAN_PIN 11
