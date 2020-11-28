@@ -187,7 +187,7 @@ void publish_sensor()
     double  temperature;
     val = analogRead(TEMP_PIN);  //读取模拟量
     temperature = (val-32)/1.8; //转化为温度
-    temperature=25+37-temperature
+    temperature=25+37-temperature;
     //读取电压值
     String battery_val=String(analogRead(POWER_PIN)/40.92);
     String sensor_data="Temp:"+String(temperature)+":Battery:"+battery_val+":FanState:"+String(FanState);
