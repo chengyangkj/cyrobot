@@ -80,6 +80,11 @@ void setup() {
     Power_On_Sound();
     //电压检测模块引脚
     pinMode(POWER_PIN,INPUT);
+    //初始化编码器
+    initEncoder();
+    //初始化电机
+    initMotor();
+    stopBase();
     //初始化结点
     nh.initNode();
     //绑定波特率
@@ -104,10 +109,7 @@ void setup() {
     Connect_Sound();
     nh.loginfo("CHENGYANGKJ BASE CONNECTED");
     //    Serial.begin(9600);
-    //初始化编码器
-    initEncoder();
-    //初始化电机
-    initMotor();
+    
     delay(1);
 //    
 }

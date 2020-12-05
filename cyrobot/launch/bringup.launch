@@ -4,6 +4,9 @@
         <param name="port" value="/dev/arduino" />
         <param name="baud" value="57600" />
     </node>
+    <node pkg="rosserial_python" name="rosserial_tcp" type="serial_node.py" output="screen" respawn = "true">
+        <param name="port" value="tcp" />
+    </node>
     <!--激光雷达节点-->
     <!--<include  file="$(find cyrobot)/launch/include/laser.launch"/>-->
     <!-- IMU Relay and Filter -->
