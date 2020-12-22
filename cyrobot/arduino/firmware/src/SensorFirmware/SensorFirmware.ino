@@ -18,10 +18,10 @@
 // WiFi Definitions //
 //
  
-const char* ssid     = "chengyangkj-wifi";
+const char* ssid     = "chengyangkj-master-wifi";
 const char* password = "chengyangkj";
 // Set the rosserial socket server IP address
-IPAddress server(192,168,31,246);
+IPAddress server(10,42,0,79);
 IPAddress ip_address;
 int status = WL_IDLE_STATUS;
 WiFiClient client;
@@ -104,7 +104,7 @@ int averageAnalog(int pin){
 void setup() {
   Serial.begin(4800);
   pinMode(D1,OUTPUT);
-  digitalWrite(D1,1);
+  // digitalWrite(D1,1);
   setupWiFi();
   delay(2000);
   s.attach(13);  // PWM pin
