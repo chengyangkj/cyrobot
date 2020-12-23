@@ -1,6 +1,6 @@
 //在这里存放机器人的一些配置信息
 #define MAX_RPM 180             // 电机的最大转速 转/分
-#define WHEEL_DIAMETER 0.098      //车轮直径（米）
+#define WHEEL_DIAMETER 0.08      //车轮直径（米）
 //#define PWM_BITS 8                // 单片机的PWM分辨率
 #define LR_WHEELS_DISTANCE 0.37  // 左右轮间距
 #define FR_WHEELS_DISTANCE 0.24  // 前后轮间距
